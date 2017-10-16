@@ -23,9 +23,22 @@ assert.deepEqual(person1, person2, 'these two objects are the not same');
   Error
 );
 */
-assert.throws(
+/*assert.throws(
   function() {
     throw new Error("Wrong value");
   },
   Error
-);
+);*/
+
+// define a simple function with callback(err, value)
+function sayHello(name, callback) {
+  var error = false;
+  var str   = "Hello "+name;
+  callback(error, str);
+}
+
+// use the function
+sayHello('World', function(err, value){
+  assert.ifError(err);
+  assert.equal(value, "Hello World");
+})
